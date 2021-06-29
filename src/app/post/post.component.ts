@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-post',
   template: `
   <div>
-  <h3>Post Title</h3>
+  <h3>{{title}}</h3>
   <button id="hideShow" (click)= "hideShow()" style="margin-left: 75%; margin-right: 25%;">
       {{buttonName}}
   </button>
@@ -12,23 +12,29 @@ import { Component, OnInit } from '@angular/core';
   
 
   <br/>
-  <p *ngIf="showHideDesc" style= "margin: 20px 20px 20px 20px">This is a test description post.This is a test description post.This is a test description post.This is a test description post.This is a test description post.This is a test description post.</p>
+  <p [style.display]= "show ? 'inline' : 'none'">This is a test description post.
+  This is a test description post.
+  This is a test description post.
+  This is a test description post.
+  This is a test description post.
+  This is a test description post.
+  </p>
   </div>
 </div>
 `,
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  public showHideDesc:boolean = true;
+  public show:boolean = true;
   public buttonName:any = "Hide";
-
+  public title:string = "This is the post title"
   ngOnInit () {  }
 
    hideShow() {
-    this.showHideDesc = !this.showHideDesc;
+    this.show = !this.show;
 
     // CHANGE THE NAME OF THE BUTTON.
-    if(this.showHideDesc)  
+    if(this.show)  
       this.buttonName = "Hide";
     else
       this.buttonName = "Show";
